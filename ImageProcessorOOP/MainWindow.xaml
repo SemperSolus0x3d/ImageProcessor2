@@ -5,8 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageProcessorOOP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ImageProcessorOOP by SemperSolus0x3d"
+        Height="800"
+        Width="1000"
+        AllowDrop="True"
+        DragDrop.PreviewDragOver="MainWindow_DragOver"
+        DragDrop.PreviewDrop="MainWindow_Drop">
+    <Window.Resources>
+        <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontFamily" Value="Leelawadee"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FontFamily" Value="Leelawadee"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="{x:Type CheckBox}"
+               TargetType="{x:Type CheckBox}">
+            <Setter Property="FontFamily" Value="Leelawadee"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="{x:Type Label}" TargetType="{x:Type Label}">
+            <Setter Property="FontFamily" Value="Leelawadee"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <TextBox x:Name="UriTextBox"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 FontFamily="Leelawadee"
+                 FontSize="20"/>
+        <UniformGrid Columns="2" Rows="1"
+                     Grid.Column="0"
+                     Grid.Row="1">
+            <Button Content="Загрузить изображение"
+                    Click="LoadImageButton_Click"/>
+            <Button Content="Сохранить изображение"
+                    Click="SaveImageButton_Click"/>
+        </UniformGrid>
+
+        <Border Grid.Column="0"
+                Grid.Row="3"
+                Margin="3"
+                Background="White"
+                x:Name="MainImageBorder">
+            <Image x:Name="MainImage"
+               AllowDrop="True"
+               VerticalAlignment="Center"/>
+        </Border>
+
+        <GridSplitter Grid.Column="0"
+                      Grid.Row="4"
+                      Height="8"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"
+                      Background="PaleTurquoise"
+                      MouseDoubleClick="GridSplitter_MouseDoubleClick"/>
+
+        <ListBox x:Name="ProcessingAlgorithmsListBox"
+                 Grid.Column="0"
+                 Grid.Row="5"
+                 HorizontalAlignment="Stretch"
+                 ScrollViewer.CanContentScroll="False"
+                 Margin="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Path=Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Content="Применить"
+                Click="ProcessImageButton_Click"
+                Grid.Column="0"
+                Grid.Row="6"/>
     </Grid>
 </Window>
