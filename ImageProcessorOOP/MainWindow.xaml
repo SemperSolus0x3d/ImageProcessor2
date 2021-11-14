@@ -31,7 +31,27 @@
             <Setter Property="FontFamily" Value="Leelawadee"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
+
+        <!-- Hotkeys -->
+        <RoutedUICommand x:Key="CancelHotkey" Text="Cancel"/>
+        <RoutedUICommand x:Key="RevertHotkey" Text="RevertChanges"/>
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Z"
+                    Modifiers="Ctrl"
+                    Command="{StaticResource CancelHotkey}"/>
+        <KeyBinding Key="Z"
+                    Modifiers="Ctrl + Shift"
+                    Command="{StaticResource RevertHotkey}"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding
+            Executed="CancelHotkeyHandler"
+            Command="{StaticResource CancelHotkey}"/>
+        <CommandBinding
+            Executed="RevertHotkeyHandler"
+            Command="{StaticResource RevertHotkey}"/>
+    </Window.CommandBindings>
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

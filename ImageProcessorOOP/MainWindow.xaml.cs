@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace ImageProcessorOOP
@@ -58,6 +59,32 @@ namespace ImageProcessorOOP
             MainImage.BeginInit();
             MainImage.Source = history.CurrentState.Bitmap;
             MainImage.EndInit();
+        }
+
+        // Ctrl+Z hotkey handler
+        private void CancelHotkeyHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            var source = history.GoBack();
+
+            if (source != null)
+            {
+                MainImage.BeginInit();
+                MainImage.Source = source.Bitmap;
+                MainImage.EndInit();
+            }
+        }
+
+        // Ctrl+Shift+Z hotkey handler
+        private void RevertHotkeyHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            var source = history.GoForward();
+
+            if (source != null)
+            {
+                MainImage.BeginInit();
+                MainImage.Source = source.Bitmap;
+                MainImage.EndInit();
+            }
         }
 
         private void GridSplitter_MouseDoubleClick(object sender, RoutedEventArgs e)
