@@ -1,11 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ImageProcessorOOP
 {
-    public class History
+    public class History : INotifyPropertyChanged
     {
-        public Image CurrentState { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public Image CurrentState
+        {
+            get => currentState;
+            set
+            {
+                currentState = value;
+                OnPropertyChanged();
+            }
+        }
+        private Image currentState;
 
         private Stack<Image> previousStates;
         private Stack<Image> futureStates;
@@ -82,6 +95,16 @@ namespace ImageProcessorOOP
             CurrentState = futureStates.Pop();
 
             return CurrentState;
+        }
+
+        private void OnPropertyChanged(
+            [CallerMemberName]string propertyName = ""
+        )
+        {
+            PropertyChanged?.Invoke(
+                this,
+                new PropertyChangedEventArgs(propertyName)
+            );
         }
     }
 }
