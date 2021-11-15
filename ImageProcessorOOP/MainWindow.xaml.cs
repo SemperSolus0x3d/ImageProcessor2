@@ -162,9 +162,9 @@ namespace ImageProcessorOOP
                         encoder.Frames.Add(BitmapFrame.Create(history.CurrentState.Bitmap));
                         encoder.Save(file);
                     }
-                }
 
-                MessageBox.Show("Сохранено");
+                    MessageBox.Show("Сохранено");
+                }
             }
             catch (Exception ex)
             {
