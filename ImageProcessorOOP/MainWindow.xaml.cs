@@ -36,6 +36,7 @@ namespace ImageProcessorOOP
                 new SwapRedAndBlue(),
 
                 new ReverseEverySecondRow(),
+                new ReverseEverySecondColumn(),
 
                 new Grayscale()
             };
