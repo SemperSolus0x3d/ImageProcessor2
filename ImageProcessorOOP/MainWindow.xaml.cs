@@ -11,23 +11,22 @@ namespace ImageProcessorOOP
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IEffect[] effects;
-        private History history;
+        public IEffect[] Effects { get; private set; }
+        public History History { get; private set; }
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeEffects();
 
-            history = new History();
+            History = new History();
 
-            MainImage.DataContext = history;
-            ProcessingAlgorithmsListBox.ItemsSource = effects;
+            DataContext = this;
         }
 
         private void InitializeEffects()
         {
-            effects = new IEffect[]
+            Effects = new IEffect[]
             {
                 new CycleBitShiftLeft(),
                 new CycleBitShiftRight(),
@@ -56,8 +55,8 @@ namespace ImageProcessorOOP
 
         private void OnImageDownloadCompleted(object sender, EventArgs e)
         {
-            history.Clear();
-            history.Save(new Image(sender as BitmapSource));
+            History.Clear();
+            History.Save(new Image(sender as BitmapSource));
         }
 
         // Ctrl+Z hotkey handler
@@ -65,7 +64,7 @@ namespace ImageProcessorOOP
         {
             try
             {
-                var source = history.GoBack();
+                var source = History.GoBack();
             }
             catch (Exception ex)
             {
@@ -78,7 +77,7 @@ namespace ImageProcessorOOP
         {
             try
             {
-                var source = history.GoForward();
+                var source = History.GoForward();
             }
             catch (Exception ex)
             {
@@ -131,7 +130,7 @@ namespace ImageProcessorOOP
         {
             try
             {
-                if (history.CurrentState == null)
+                if (History.CurrentState == null)
                     return;
 
                 SaveFileDialog dialog = new SaveFileDialog();
@@ -142,7 +141,7 @@ namespace ImageProcessorOOP
                     using (var file = dialog.OpenFile())
                     {
                         BitmapEncoder encoder = new PngBitmapEncoder();
-                        encoder.Frames.Add(BitmapFrame.Create(history.CurrentState.Bitmap));
+                        encoder.Frames.Add(BitmapFrame.Create(History.CurrentState.Bitmap));
                         encoder.Save(file);
                     }
 
@@ -161,9 +160,9 @@ namespace ImageProcessorOOP
             {
                 IEffect effect = ProcessingAlgorithmsListBox.SelectedItem as IEffect;
 
-                var newImage = history.CurrentState.Clone();
+                var newImage = History.CurrentState.Clone();
                 effect.Apply(newImage);
-                history.Save(newImage);
+                History.Save(newImage);
             }
             catch (Exception ex)
             {

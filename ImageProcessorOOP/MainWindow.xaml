@@ -88,7 +88,9 @@
             <Image x:Name="MainImage"
                AllowDrop="True"
                VerticalAlignment="Center"
-               Source="{Binding Path=CurrentState.Bitmap, Mode=OneWay}"/>
+               Source="{Binding
+                Path=History.CurrentState.Bitmap,
+                Mode=OneWay}"/>
         </Border>
 
         <GridSplitter Grid.Column="0"
@@ -104,7 +106,8 @@
                  Grid.Row="5"
                  HorizontalAlignment="Stretch"
                  ScrollViewer.CanContentScroll="False"
-                 Margin="2">
+                 Margin="2"
+                 ItemsSource="{Binding Path=Effects, Mode=OneWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding Path=Name}"/>
