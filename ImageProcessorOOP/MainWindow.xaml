@@ -87,7 +87,8 @@
                 x:Name="MainImageBorder">
             <Image x:Name="MainImage"
                AllowDrop="True"
-               VerticalAlignment="Center"/>
+               VerticalAlignment="Center"
+               Source="{Binding Path=CurrentState.Bitmap, Mode=OneWay}"/>
         </Border>
 
         <GridSplitter Grid.Column="0"

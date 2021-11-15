@@ -21,6 +21,7 @@ namespace ImageProcessorOOP
 
             history = new History();
 
+            MainImage.DataContext = history;
             ProcessingAlgorithmsListBox.ItemsSource = effects;
         }
 
@@ -57,10 +58,6 @@ namespace ImageProcessorOOP
         {
             history.Clear();
             history.Save(new Image(sender as BitmapSource));
-
-            MainImage.BeginInit();
-            MainImage.Source = history.CurrentState.Bitmap;
-            MainImage.EndInit();
         }
 
         // Ctrl+Z hotkey handler
@@ -69,13 +66,6 @@ namespace ImageProcessorOOP
             try
             {
                 var source = history.GoBack();
-
-                if (source != null)
-                {
-                    MainImage.BeginInit();
-                    MainImage.Source = source.Bitmap;
-                    MainImage.EndInit();
-                }
             }
             catch (Exception ex)
             {
@@ -89,13 +79,6 @@ namespace ImageProcessorOOP
             try
             {
                 var source = history.GoForward();
-
-                if (source != null)
-                {
-                    MainImage.BeginInit();
-                    MainImage.Source = source.Bitmap;
-                    MainImage.EndInit();
-                }
             }
             catch (Exception ex)
             {
@@ -181,10 +164,6 @@ namespace ImageProcessorOOP
                 var newImage = history.CurrentState.Clone();
                 effect.Apply(newImage);
                 history.Save(newImage);
-
-                MainImage.BeginInit();
-                MainImage.Source = newImage.Bitmap;
-                MainImage.EndInit();
             }
             catch (Exception ex)
             {
