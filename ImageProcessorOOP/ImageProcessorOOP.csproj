@@ -8,7 +8,7 @@
     <Authors>SemperSolus0x3d</Authors>
     <Company />
     <Description>.NET Core 3.1 WPF application for applying different effects to images</Description>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
