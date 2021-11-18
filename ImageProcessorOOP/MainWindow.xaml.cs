@@ -35,6 +35,8 @@ namespace ImageProcessorOOP
                 new SwapGreenAndBlue(),
                 new SwapRedAndBlue(),
 
+                new HueShift(),
+
                 new ReverseEverySecondRow(),
                 new ReverseEverySecondColumn(),
 
