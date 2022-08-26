@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ImageProcessorOOP
+namespace ImageProcessor2
 {
     public class HueShift : IEffect
     {

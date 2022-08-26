@@ -1,10 +1,10 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace ImageProcessorOOP
+namespace ImageProcessor2
 {
-    public class CycleBitShiftLeft : CycleBitShift
+    public class CycleBitShiftRight : CycleBitShift
     {
-        public override string Name => "Cycle bit shift left";
+        public override string Name => "Cycle bit shift right";
 
         public unsafe override void Apply(Image image)
         {
@@ -18,7 +18,7 @@ namespace ImageProcessorOOP
                 int pixelsCount = bitmap.PixelWidth * bitmap.PixelHeight;
 
                 for (int i = 0; i < pixelsCount; i++)
-                    bufferPtr[i] = ShiftBitsLeft(bufferPtr[i]);
+                    bufferPtr[i] = ShiftBitsRight(bufferPtr[i]);
             }
             finally
             {
@@ -26,9 +26,9 @@ namespace ImageProcessorOOP
             }
         }
 
-        private uint ShiftBitsLeft(uint a)
+        private uint ShiftBitsRight(uint a)
         {
-            return (a << 1) | (a >> 31);
+            return (a >> 1) | (a << 31);
         }
     }
 }

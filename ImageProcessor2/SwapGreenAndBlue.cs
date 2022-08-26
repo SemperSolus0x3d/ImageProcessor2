@@ -1,15 +1,15 @@
-﻿namespace ImageProcessorOOP
+﻿namespace ImageProcessor2
 {
-    public class SwapRedAndBlue : ComponentsSwap
+    public class SwapGreenAndBlue : ComponentsSwap
     {
         public override string Name
-            => "Swap red and blue components";
+            => "Swap green and blue components";
 
         public override void Apply(Image image)
         {
             SwapPixelComponents(
                 image,
-                Component.Red,
+                Component.Green,
                 Component.Blue
             );
         }

@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace ImageProcessorOOP
+namespace ImageProcessor2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

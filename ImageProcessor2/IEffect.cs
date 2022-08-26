@@ -1,4 +1,4 @@
-﻿namespace ImageProcessorOOP
+﻿namespace ImageProcessor2
 {
     public interface IEffect
     {
