@@ -1,4 +1,4 @@
-﻿namespace ImageProcessor2
+﻿namespace ImageProcessor2.Effects
 {
     public class ReverseEverySecondRow : IEffect
     {

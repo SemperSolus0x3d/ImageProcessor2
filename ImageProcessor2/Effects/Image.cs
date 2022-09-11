@@ -1,11 +1,11 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ImageProcessor2
+namespace ImageProcessor2.Effects
 {
     public class Image
     {
-        public PixelFormat PreferredFormat { get; } 
+        public PixelFormat PreferredFormat { get; }
             = PixelFormats.Bgra32;
 
         public WriteableBitmap Bitmap { get; private set; }

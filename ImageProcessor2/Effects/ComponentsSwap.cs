@@ -1,4 +1,4 @@
-﻿namespace ImageProcessor2
+﻿namespace ImageProcessor2.Effects
 {
     public abstract class ComponentsSwap : IEffect
     {
@@ -25,7 +25,7 @@
             try
             {
                 bitmap.Lock();
-                
+
                 unsafe
                 {
                     byte* bufferPtr = (byte*)bitmap.BackBuffer.ToPointer();

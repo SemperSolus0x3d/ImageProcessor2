@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace ImageProcessor2
+namespace ImageProcessor2.Effects
 {
     public class CycleBitShiftLeft : CycleBitShift
     {
@@ -28,7 +28,7 @@ namespace ImageProcessor2
 
         private uint ShiftBitsLeft(uint a)
         {
-            return (a << 1) | (a >> 31);
+            return a << 1 | a >> 31;
         }
     }
 }

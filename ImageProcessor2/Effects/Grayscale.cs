@@ -1,4 +1,4 @@
-﻿namespace ImageProcessor2
+﻿namespace ImageProcessor2.Effects
 {
     public class Grayscale : IEffect
     {
@@ -20,7 +20,7 @@
 
                     for (int i = 0; i < bufferSize; i += 4)
                         SetToAverage(
-                            ref bufferPtr[i    ],
+                            ref bufferPtr[i],
                             ref bufferPtr[i + 1],
                             ref bufferPtr[i + 2]
                         );

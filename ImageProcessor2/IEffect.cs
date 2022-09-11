@@ -1,4 +1,6 @@
-﻿namespace ImageProcessor2
+﻿using ImageProcessor2.Effects;
+
+namespace ImageProcessor2
 {
     public interface IEffect
     {

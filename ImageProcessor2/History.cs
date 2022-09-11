@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageProcessor2.Effects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
