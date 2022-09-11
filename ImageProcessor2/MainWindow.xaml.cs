@@ -37,6 +37,7 @@ namespace ImageProcessor2
                 new SwapRedAndBlue(),
 
                 new HueShift(),
+                new MergeAllHueShiftResults(),
 
                 new ReverseEverySecondRow(),
                 new ReverseEverySecondColumn(),

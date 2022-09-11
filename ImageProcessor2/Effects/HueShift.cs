@@ -43,27 +43,30 @@ namespace ImageProcessor2.Effects
 
                 unsafe
                 {
-                    byte* bufferPtr = (byte*)bitmap.BackBuffer.ToPointer();
+                    uint* pixels = (uint*)bitmap.BackBuffer.ToPointer();
 
-                    int bufferSize = bitmap.PixelWidth * bitmap.PixelHeight * 4;
-
-                    for (int i = 0; i < bufferSize; i += 4)
-                    {
-                        byte* pixelPtr = bufferPtr + i;
-
-                        byte* b = pixelPtr;
-                        byte* g = pixelPtr + 1;
-                        byte* r = pixelPtr + 2;
-                        /* byte* a = pixelPtr + 3; */
-
-                        ShiftColor(ref *r, ref *g, ref *b);
-                    }
+                    Apply(0, 0, bitmap.PixelWidth, bitmap.PixelHeight, bitmap.PixelWidth, pixels);
                 }
             }
             finally
             {
                 bitmap.Unlock();
             }
+        }
+
+        public unsafe void Apply(int x1, int y1, int x2, int y2, int width, uint* pixels)
+        {
+            for (int y = y1; y < y2; y++)
+                for (int x = x1; x < x2; x++)
+                {
+                    byte* pixelPtr = (byte*)(pixels + y * width + x);
+
+                    byte* b = pixelPtr;
+                    byte* g = pixelPtr + 1;
+                    byte* r = pixelPtr + 2;
+
+                    ShiftColor(ref *r, ref *g, ref *b);
+                }
         }
 
         private byte Clamp(double val)
