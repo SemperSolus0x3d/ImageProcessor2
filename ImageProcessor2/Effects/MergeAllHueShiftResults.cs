@@ -33,9 +33,9 @@
                 int width = bitmap.PixelWidth;
                 int height = bitmap.PixelHeight;
 
-                var regionsCount = _shifts.Length;
                 var regionHeight = height;
-                var regionWidth = width / regionsCount;
+                var regionWidth = width / _shifts.Length;
+                var regionsCount = (width + regionWidth - 1) / regionWidth;
 
                 for (int i = 0; i < regionsCount; i++)
                 {
@@ -48,7 +48,7 @@
                     if (i == regionsCount - 1)
                         x2 = width;
 
-                    _shifts[i].Apply(x1, y1, x2, y2, width, pixels);
+                    _shifts[i % _shifts.Length].Apply(x1, y1, x2, y2, width, pixels);
                 }
             }
             finally
