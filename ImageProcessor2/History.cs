@@ -21,13 +21,13 @@ namespace ImageProcessor2
         }
         private Image currentState;
 
-        private Stack<Image> previousStates;
-        private Stack<Image> futureStates;
+        private LinkedList<Image> previousStates;
+        private LinkedList<Image> futureStates;
 
         public History()
         {
-            previousStates = new Stack<Image>();
-            futureStates = new Stack<Image>();
+            previousStates = new LinkedList<Image>();
+            futureStates = new LinkedList<Image>();
 
             CurrentState = null;
         }
@@ -56,7 +56,7 @@ namespace ImageProcessor2
                 );
 
             if (CurrentState != null)
-                previousStates.Push(CurrentState);
+                previousStates.AddLast(CurrentState);
 
             CurrentState = image;
             
@@ -81,8 +81,10 @@ namespace ImageProcessor2
             if (previousStates.Count == 0)
                 return CurrentState;
 
-            futureStates.Push(CurrentState);
-            CurrentState = previousStates.Pop();
+            futureStates.AddLast(CurrentState);
+            CurrentState = previousStates.Last?.Value;
+
+            previousStates.RemoveLast();
 
             return CurrentState;
         }
@@ -92,8 +94,10 @@ namespace ImageProcessor2
             if (futureStates.Count == 0)
                 return CurrentState;
 
-            previousStates.Push(CurrentState);
-            CurrentState = futureStates.Pop();
+            previousStates.AddLast(CurrentState);
+            CurrentState = futureStates.Last?.Value;
+
+            futureStates.RemoveLast();
 
             return CurrentState;
         }
