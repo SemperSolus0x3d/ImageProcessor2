@@ -39,6 +39,8 @@ namespace ImageProcessor2
                 new HueShift(),
                 new MergeAllHueShiftResults(),
 
+                new MakeSemiTransparent(),
+
                 new ReverseEverySecondRow(),
                 new ReverseEverySecondColumn(),
 
